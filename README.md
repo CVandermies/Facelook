@@ -8,3 +8,5 @@ This program purpose is to recognize faces via webcam and analyze the mood of th
 * Sad 
 * Surprise 
 * Neutral
+
+To run the program, install the requirements and run main.py.

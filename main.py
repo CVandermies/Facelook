@@ -48,6 +48,17 @@ while True:
             frame[y:y+h, x:x+w, :] = emoji
             
     # Display the resulting frame
+    font = cv2.FONT_HERSHEY_SIMPLEX
+  
+    # Use putText() method for
+    # inserting text on video
+    cv2.putText(frame, 
+                'Press q to exit', 
+                (50, 50), 
+                font, 1, 
+                (0, 255, 255), 
+                2, 
+                cv2.LINE_4)
     cv2.imshow('frame', frame)
     # If the key pressed is "q" (quit)
     if cv2.waitKey(10) & 0xFF == ord('q'):

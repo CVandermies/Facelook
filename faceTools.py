@@ -3,16 +3,6 @@ import cv2
 from math import degrees
 
 
-def resize(image, target_size=(48,48), to_gray=True):	
-    """Transform the matrix size to reach the target size"""
-    image = cv2.resize(image, target_size)
-    if to_gray:
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        image = np.expand_dims(image, axis = 0)
-        image = np.divide(image, 255) 
-    return image
-
-
 def computeDistance(origin, destination):
     """Find the distance between two points in the Cartesian coordinates"""
     distance = origin - destination
@@ -64,6 +54,16 @@ def align(img):
             return direction * angle
         return None
     return None 
+
+    
+def resize(image, target_size=(48,48), to_gray=True):	
+    """Transform the matrix size to reach the target size"""
+    image = cv2.resize(image, target_size)
+    if to_gray:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image = np.expand_dims(image, axis = 0)
+        image = np.divide(image, 255) 
+    return image
 
 
 def findFaces(frame, fcascade):
