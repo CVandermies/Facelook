@@ -36,7 +36,7 @@ def align(img):
         
         if L_eye_y > R_eye_y:
             triangle_point = (R_eye_x, L_eye_y)
-            direction = -1 # Rotate clockwise (antitrigo)
+            direction = -1 # Rotate clockwise (retrograde)
         else:
             triangle_point = (L_eye_x, R_eye_y)
             direction = 1 # Rotate counter-clockwise 
@@ -56,7 +56,7 @@ def align(img):
     return None 
 
     
-def resize(image, target_size=(48,48), to_gray=True):	
+def resize(image, target_size, to_gray=True):	
     """Transform the matrix size to reach the target size"""
     image = cv2.resize(image, target_size)
     if to_gray:
@@ -77,7 +77,8 @@ def findFaces(frame, fcascade):
         for x,y,w,h in faces:
             buff = frame[int(y):int(y+h), int(x):int(x+w)]            
             rotation = align(buff)
-            resized_face = resize(buff)
-            result.append((resized_face, [x, y, w, h], rotation))
+            resized_face = resize(buff, (48,48))
+            resized_for_mask = resize(buff, (224,224), to_gray=False)
+            result.append((resized_face, [x, y, w, h], rotation, resized_for_mask))
         return result
     return None

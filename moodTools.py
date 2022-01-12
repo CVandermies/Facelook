@@ -32,5 +32,7 @@ def callModel():
 
 def predict(model, image):
     """Get a roi (face) and predict emotion using the model"""
-    prediction = model.predict(image)[0,:]
+    prediction = model.predict(image)
     return emotion_list[np.argmax(prediction)]
+    
+
